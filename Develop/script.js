@@ -5,8 +5,11 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  var length = 8;
+    charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789'
   passwordText.value = password;
+  
+
 
 }
 
