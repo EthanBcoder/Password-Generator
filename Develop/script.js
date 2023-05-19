@@ -113,5 +113,3 @@ function generatePassword() {
   return result.join('');
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
