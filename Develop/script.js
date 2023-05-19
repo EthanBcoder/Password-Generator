@@ -2,16 +2,93 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  var length = 8;
-    charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789'
-  passwordText.value = password;
-  
 
+var specialCharacters = [
+  '@',
+  '%',
+  '+',
+  '\\',
+  '/',
+  "'",
+  '!',
+  '#',
+  '$',
+  '^',
+  '?',
+  ':',
+  ',',
+  ')',
+  '(',
+  '}',
+  '{',
+  ']',
+  '[',
+  '~',
+  '-',
+  '_',
+  '.',
+];
 
-}
+var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+var lowerCasedCharacters = [
+  'a',
+  'b',
+  'c',
+  'd',
+  'e',
+  'f',
+  'g',
+  'h',
+  'i',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'o',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'u',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z',
+];
+
+var upperCasedCharacters = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+  'Q',
+  'R',
+  'S',
+  'T',
+  'U',
+  'V',
+  'W',
+  'X',
+  'Y',
+  'Z',
+];
+
 
 function getPasswordOptions() {
   var length = parseInt(
@@ -24,23 +101,34 @@ function getPasswordOptions() {
     return null;
   }
 
+  if (length < 8) {
+    alert('Password length must be at least 8 characters');
+    return null;
+  }
+
+  if (length > 128) {
+    alert('Password length must be less than 129 characters');
+    return null;
+  }
+
   var hasSpecialCharacters = confirm(
-    'Click OK to confirm including special characters.'
+   prompt('Click OK to confirm including special characters.')
   );
 
   var hasNumericCharacters = confirm(
-    'Click OK to confirm including numeric characters.'
+    prompt('Click OK to confirm including numeric characters.')
   );
 
 
   var hasLowerCasedCharacters = confirm(
-    'Click OK to confirm including lowercase characters.'
+    prompt('Click OK to confirm including lowercase characters.')
   );
 
   var hasUpperCasedCharacters = confirm(
-    'Click OK to confirm including uppercase characters.'
+   prompt('Click OK to confirm including uppercase characters.')
   );
   }
+
 
   if (
   hasSpecialCharacters === false &&
@@ -110,6 +198,16 @@ function generatePassword() {
     result[i] = guaranteedCharacters[i];
   }
 
+  function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password")
+    passwordText.value = password;
+    
+  }
+
+  generateBtn.addEventListener('click', writePassword)
+
   return result.join('');
 }
+
 
